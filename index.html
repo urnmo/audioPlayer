@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="AudioApp">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-beta.3/angular-ui-router.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>SWANKY AUDIO PLAYER</h1>
+        <nav>
+            <a ui-sref="home">HOME</a>
+            <a ui-sref="music">MUSIC</a>
+            <a ui-sref="friends">FRIENDS</a>
+        </nav>
+    </header>
+    <section>
+
+        <ui-view>
+
+        </ui-view>
+
+    </section>
+
+
+
+</body>
+
+</html>
