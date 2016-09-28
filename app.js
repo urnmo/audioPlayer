@@ -19,7 +19,7 @@ app.config(function ($stateProvider) {
     $stateProvider.state({
         name: 'home',
         url: '/home',
-        component: home.html,
+        component: 'home',
     })
 });
 
@@ -50,8 +50,8 @@ app.controller("friendsController", function ($scope, friendsMusic) {
 
 app.controller("homeController", function ($scope, friendsMusic) {
     console.log('loady loady load3'),
-        $scope.home = friendsMusic.frands().length;
-        $scope.home = friendsMusic.songs().length;
+        $scope.friends = friendsMusic.frands().length;
+        $scope.dittys = friendsMusic.dittys().length;
 });
 
 app.factory('friendsMusic', function () {
