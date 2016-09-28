@@ -1,5 +1,8 @@
-<section class='music'>
-    <h1>MUSIC LIST</h1>
-    
+<!doctype html>
+
+
+<section ng-repeat="song in songs" class='music'>
+    <h2>SONG NAME: {{ song.title }} </h2>
+    <h3>Artist: {{ song.artist }} </h3>
 
 </section>
