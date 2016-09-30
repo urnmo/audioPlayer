@@ -79,20 +79,20 @@ app.controller("homeController", function ($scope, friendsMusic) {
 //this controller needs scope to $scope, $stateParams and friendsMusic
 app.controller("songDetController", function ($scope, $stateParams, friendsMusic) {
     console.log('loady loady load4'),
-    // get the song specified in the route
-    $scope.song = friendsMusic.getSongDets($stateParams.id);
-//     //use route parameters
-//     //use to specify which song to get deets on
-//     //use to get id numbers
+        // get the song specified in the route
+        $scope.song = friendsMusic.getSongDets($stateParams.id);
+    //     //use route parameters
+    //     //use to specify which song to get deets on
+    //     //use to get id numbers
 
 });
 
 app.controller("friendDetController", function ($scope, $stateParams, friendsMusic) {
     console.log('loady loady load4'),
-    $scope.id = $stateParams.id;
-//     //use route parameters
-//     //use to specify which song to get deets on
-//     //use to get id numbers
+        $scope.friend = friendsMusic.getFriendDets($stateParams.id);
+    //     //use route parameters
+    //     //use to specify which song to get deets on
+    //     //use to get id numbers
 
 });
 
@@ -108,11 +108,11 @@ app.factory('friendsMusic', function () {
         { id: "5", title: "Do You Hear What I Hear?", artist: "Bing Crosby", release: "1958", onAlbum: "Christmas on your Face", length: "6:00" },
     ];
     let friends = [
-        { name: "Luke", faves: "42", weight: "450lbs", social: "234-56-5764", zip: "28204", bloodType: "A+" },
-        { name: "Tron", faves: "666", weight: "85lbs", social: "236-89-5674", zip: "29635", bloodType: "O-" },
-        { name: "Eric", faves: "2", weight: "350", social: "234-56-7890", zip: "29284", bloodType: "B-" },
-        { name: "Scott", faves: "34", weight: "56", social: "432-76-0987", zip: "23453", bloodType: "AB+" },
-    ];  //give id numbers *unique*
+        { id: "0", name: "Luke", faves: "42", weight: "450lbs", social: "234-56-5764", zip: "28204", bloodType: "A+" },
+        { id: "0", name: "Tron", faves: "666", weight: "85lbs", social: "236-89-5674", zip: "29635", bloodType: "O-" },
+        { id: "0", name: "Eric", faves: "2", weight: "350", social: "234-56-7890", zip: "29284", bloodType: "B-" },
+        { id: "0", name: "Scott", faves: "34", weight: "56", social: "432-76-0987", zip: "23453", bloodType: "AB+" },
+    ]; //give id numbers *unique*
 
     return {
         frands: function () { return friends; },
@@ -120,11 +120,19 @@ app.factory('friendsMusic', function () {
         home: function () { return home; },
         // Get the song with id = 'id'
         getSongDets: function (id) {
-            for(let i=0; i< songs.length; i++){
-                if(songs[i].id === id){
+            for (let i = 0; i < songs.length; i++) {
+                if (songs[i].id === id) {
                     return songs[i];
                 }
             }
         },
+       
+        getFriendDets: function (id) {
+            for (let i = 0; i < friends.length; i++) {
+                if (friends[i].id === id) {
+                    return friends[i];
+                }
+            }
+        },
     }
-});
+    });
