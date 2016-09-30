@@ -2,6 +2,6 @@
 
 
 <section ng-repeat="friend in friends" class='friends'>
- <h2>Your friend, {{ friend.name }}</h2>
-    <h1>Favorited {{ friend.faves }} songs</h1>
+    <h4>Your friend, <a ui-sref="frand"> {{ friend.name }} </a> Favorited {{ friend.faves }} songs</h4>
+
 </section>
