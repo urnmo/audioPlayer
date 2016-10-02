@@ -60,8 +60,6 @@ app.component('friendDet', {
     controller: "friendDetController",
 });
 
-
-
 app.controller("musicController", function ($scope, friendsMusic) {
     console.log('loady loady load'),
         $scope.songs = friendsMusic.dittys();
@@ -77,7 +75,6 @@ app.controller("homeController", function ($scope, friendsMusic) {
         $scope.friends = friendsMusic.frands().length;
     $scope.dittys = friendsMusic.dittys().length;
 });
-
 //this controller needs scope to $scope, $stateParams and friendsMusic
 app.controller("songDetController", function ($scope, $stateParams, friendsMusic) {
     console.log('loady loady load4'),
@@ -98,12 +95,10 @@ app.controller("friendDetController", function ($scope, $stateParams, friendsMus
 
 });
 
-// app.controller("UNAPController", function ($scope){
-//     $scope.username = UNAP.login($scope.username)
-// });
 
 
-app.factory('friendsMusic', function ($scope) {
+
+app.factory('friendsMusic', function () {
     let songs = [
         { id: "0", title: "Tom's Diner", artist: "Suzanne Vega", release: "1992", onAlbum: "99.9F", length: "3:22" },
         { id: "1", title: "Paradise By the Dashboard", artist: "Meatloaf", release: "1978", onAlbum: "Bat Out of Hell", length: "10:23" },
@@ -117,7 +112,6 @@ app.factory('friendsMusic', function ($scope) {
         { id: "1", name: "Tron", faves: "666", weight: "85lbs", social: "236-89-5674", zip: "29635", bloodType: "O-" },
         { id: "2", name: "Eric", faves: "2", weight: "350", social: "234-56-7890", zip: "29284", bloodType: "B-" },
         { id: "3", name: "Scott", faves: "34", weight: "56", social: "432-76-0987", zip: "23453", bloodType: "AB+" },
-        { id: "4", name: "Ben", faves: "234", weight: "456", social: "442-76-0984", zip: "23453", bloodType: "pizza" },
     ]; //give id numbers *unique*
 
     return {
@@ -132,7 +126,7 @@ app.factory('friendsMusic', function ($scope) {
                 }
             }
         },
-
+       
         getFriendDets: function (id) {
             for (let i = 0; i < friends.length; i++) {
                 if (friends[i].id === id) {
@@ -141,20 +135,28 @@ app.factory('friendsMusic', function ($scope) {
             }
         },
     }
+    });
+
+
+app.factory("UNAP", function(){
+    let UNAPS = [];
+    
+    return{
+        login: function (userName, password){ 
+            UNAPS.push({
+                username: username,
+                password: password,
+            });
+            console.log(UNAPS);
+        return UNAPS
+        },
+
+    }
+
 });
 
-// app.factory("UNAP", function($scope){
-//     let creds = [];
-
-//     return {
-//         login: function (username, password){
-//             creds.push({
-//                 username: username,
-//                 password: password,
-//             });
-//         },
-//         all: function(){
-//             return creds;
-//         },
-//     };
-// });
+app.controller("UNAPController", function($scope,$stateParams){
+    $scope.login = function(){
+        $scope.UNAPS = UNAP.login($scope.username, $scope.password);
+    }
+});
