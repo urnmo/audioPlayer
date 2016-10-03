@@ -1,6 +1,6 @@
 <!doctype html>
 
-
+<p>Logged in as {{ user.username }}</p>
 <section ng-repeat="song in songs" class='music'>
         <h4> <a ui-sref="songDetails({ id : song.id })"> SONG: {{ song.title }}</a> </h4>
 </section>

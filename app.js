@@ -63,9 +63,12 @@ app.component('friendDet', {
 app.controller("musicController", function ($scope, friendsMusic, UNAP) {
     console.log('loady loady load'),
         $scope.songs = friendsMusic.dittys();
+        $scope.user = UNAP.getUNAP();
 });
 
-app.controller("friendsController", function ($scope, friendsMusic) {
+//controller calls function that gives them back data
+
+app.controller("friendsController", function ($scope, friendsMusic, UNAP) {
     console.log('loady loady loadm2'),
         $scope.friends = friendsMusic.frands();
 });
@@ -75,7 +78,7 @@ app.controller("homeController", function ($scope, friendsMusic, UNAP) {
         $scope.friends = friendsMusic.frands().length;
     $scope.dittys = friendsMusic.dittys().length;
     $scope.login = function (username, password) {
-        $scope.UNAPS = UNAP.login(username, password);
+        $scope.user = UNAP.login(username, password);
         $scope.username = "";
         $scope.password = "";
     }
@@ -142,8 +145,9 @@ app.factory('friendsMusic', function () {
     }
 });
 
-
+//service does the work and returns a funtion that can be run for the value
 app.factory("UNAP", function () {
+    //variable has no meaning outside of this function
     let UNAPS = { username: null, password: null };
     console.log(UNAPS);
     return {
@@ -152,6 +156,9 @@ app.factory("UNAP", function () {
             UNAPS.password = password;
             return UNAPS
         },
+        getUNAP(){
+            return UNAPS
+        }
 
     }
 
