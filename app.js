@@ -60,7 +60,7 @@ app.component('friendDet', {
     controller: "friendDetController",
 });
 
-app.controller("musicController", function ($scope, friendsMusic) {
+app.controller("musicController", function ($scope, friendsMusic, UNAP) {
     console.log('loady loady load'),
         $scope.songs = friendsMusic.dittys();
 });
@@ -70,10 +70,15 @@ app.controller("friendsController", function ($scope, friendsMusic) {
         $scope.friends = friendsMusic.frands();
 });
 
-app.controller("homeController", function ($scope, friendsMusic) {
+app.controller("homeController", function ($scope, friendsMusic, UNAP) {
     console.log('loady loady load3'),
         $scope.friends = friendsMusic.frands().length;
     $scope.dittys = friendsMusic.dittys().length;
+    $scope.login = function (username, password) {
+        $scope.UNAPS = UNAP.login(username, password);
+        $scope.username = "";
+        $scope.password = "";
+    }
 });
 //this controller needs scope to $scope, $stateParams and friendsMusic
 app.controller("songDetController", function ($scope, $stateParams, friendsMusic) {
@@ -126,7 +131,7 @@ app.factory('friendsMusic', function () {
                 }
             }
         },
-       
+
         getFriendDets: function (id) {
             for (let i = 0; i < friends.length; i++) {
                 if (friends[i].id === id) {
@@ -135,28 +140,19 @@ app.factory('friendsMusic', function () {
             }
         },
     }
-    });
+});
 
 
-app.factory("UNAP", function(){
-    let UNAPS = [];
-    
-    return{
-        login: function (userName, password){ 
-            UNAPS.push({
-                username: username,
-                password: password,
-            });
-            console.log(UNAPS);
-        return UNAPS
+app.factory("UNAP", function () {
+    let UNAPS = { username: null, password: null };
+    console.log(UNAPS);
+    return {
+        login: function (username, password) {
+            UNAPS.username = username;
+            UNAPS.password = password;
+            return UNAPS
         },
 
     }
 
-});
-
-app.controller("UNAPController", function($scope,$stateParams){
-    $scope.login = function(){
-        $scope.UNAPS = UNAP.login($scope.username, $scope.password);
-    }
 });
